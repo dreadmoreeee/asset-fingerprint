@@ -1,0 +1,16 @@
+# Example: fingerprint the build output and fail the job if a deploy would
+# ship un-fingerprinted assets. Copy to your own repository's workflow folder.
+name: build
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install asset-fingerprint
+      - run: npm ci && npm run build          # produces ./dist
+      - run: asset-fingerprint dist --mode rename --site-host example.com
+      - run: asset-fingerprint dist --mode rename --site-host example.com --check --no-headers

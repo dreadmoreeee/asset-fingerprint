@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "asset-fingerprint"
+version = "0.1.0"
+description = "Fingerprint static assets in a build folder (name.<hash>.ext or ?v=<hash>) and rewrite every reference."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Marvin Palencia" }]
+keywords = ["cache-busting", "static-assets", "fingerprint", "build"]
+dependencies = []
+
+[project.urls]
+Homepage = "https://marvin.demarkstudio.ca"
+
+[project.scripts]
+asset-fingerprint = "asset_fingerprint.cli:main"
+
+[tool.setuptools]
+packages = ["asset_fingerprint"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
